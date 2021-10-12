@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:SyncLoopDictionaries"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!-- TEXT SIZES -->
+    <system:Double x:Key="BaseTextSize">14</system:Double>
+    <system:Double x:Key="TextBoxTextSize">14</system:Double>
+    <system:Double x:Key="RadioButtonsTextSize">14</system:Double>
+
+    <!-- BUTTONS -->
+    <system:Double x:Key="ButtonWidth">100</system:Double>
+    <system:Double x:Key="ButtonHeight">30</system:Double>
+    
+</ResourceDictionary>

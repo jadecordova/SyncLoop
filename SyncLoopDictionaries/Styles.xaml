@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:SyncLoopDictionaries">
+
+    <!-- COLORS -->
+    <Color x:Key="LightTextColor">#FFFFFF</Color>
+    <Color x:Key="AccentColor">RoyalBlue</Color>
+
+    <!-- BRUSHES -->
+    <SolidColorBrush x:Key="LightTextColorBrush" Color="{StaticResource LightTextColor}" />
+    <SolidColorBrush x:Key="AccentColorBrush" Color="{StaticResource AccentColor}" />
+
+    <!-- THICKNESS -->
+    <Thickness  x:Key="BottomMargin" Left="0" Right="10" Top="5" Bottom="5" />
+
+    <!-- STYLES -->
+    <Style x:Key="SmpteText" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="{StaticResource BottomMargin}" />
+        <Setter Property="Foreground" Value="{StaticResource LightTextColorBrush}" />
+    </Style>
+
+    <Style x:Key="Accented" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource AccentColorBrush}"/>
+    </Style>
+    
+</ResourceDictionary>

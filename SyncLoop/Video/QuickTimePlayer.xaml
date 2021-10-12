@@ -1,0 +1,83 @@
+﻿<base:VideoWindow x:Class="SyncLoop.Video.QuickTimePlayer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:base="clr-namespace:SyncLoop"
+        xmlns:cm="clr-namespace:SyncLoopLibrary.Commands;assembly=SyncLoopLibrary"
+        xmlns:converters="clr-namespace:SyncLoopLibrary.Converters;assembly=SyncLoopLibrary"
+        xmlns:local="clr-namespace:SyncLoop.Video"
+        mc:Ignorable="d"
+        UseLayoutRounding="True"
+        Title="SyncLoop" Height="580" Width="720" SizeToContent="WidthAndHeight"
+        Loaded="QuickTimePlayerLoaded">
+
+    <Window.Resources>
+        <converters:ModeToVisibilityConverter x:Key="ModeToVisibilityConverter"/>
+    </Window.Resources>
+
+    <!-- COMMAND BINDINGS -->
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Open" CanExecute="Open_CanExecute" Executed="Open_Executed"/>
+        <CommandBinding Command="cm:SyncLoopCommands.Exit" CanExecute="Exit_CanExecute" Executed="Exit_Executed"/>
+        <CommandBinding Command="cm:SyncLoopCommands.GoTo" CanExecute="GoTo_CanExecute" Executed="GoTo_Executed"/>
+    </Window.CommandBindings>
+
+    <!-- GRID -->
+    <Grid>
+
+        <!-- DEFINITIONS -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="480"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- MENU -->
+        <Menu Background="{StaticResource HighlightBrush}">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Open video..." Command="ApplicationCommands.Open"/>
+                <Separator/>
+                <MenuItem Header="_Exit"  Command="cm:SyncLoopCommands.Exit"/>
+            </MenuItem>
+            <MenuItem Header="_Navigate">
+                <MenuItem Header="_Go To..."  Command="cm:SyncLoopCommands.GoTo"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- VIDEO PLAYER-->
+        <WindowsFormsHost x:Name="PlayerHost" HorizontalAlignment="Left" Height="480" Grid.Row="1" VerticalAlignment="Top" Width="720" />
+
+        <!-- DISPLAY -->
+        <Border Grid.Row="2" Style="{StaticResource Accented}" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- CUE IN LABEL -->
+                <TextBlock Grid.Column="0" 
+                           x:Name="CueInLabel"
+                           Style ="{StaticResource SmpteText}"
+                           Text="00:00:00:00"
+                           Visibility="{Binding Path=DocumentType, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Side }"  />
+
+                <!-- CENTER LABEL -->
+                <TextBlock Grid.Column="1"
+                           x:Name="CenterLabel"
+                           Style ="{StaticResource SmpteText}" 
+                           Text="00:00:00:00"
+                           Visibility="{Binding Path=DocumentType, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Center }"  />
+                <!-- CUE OUT LABEL -->
+                <TextBlock Grid.Column="2" 
+                           x:Name="CueOutLabel"
+                           Style ="{StaticResource SmpteText}" 
+                           Text="00:00:00:00"
+                           Visibility="{Binding Path=DocumentType, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Side }"  />
+
+            </Grid>
+        </Border>
+    </Grid>
+</base:VideoWindow>

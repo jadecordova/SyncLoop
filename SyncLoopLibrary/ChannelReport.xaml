@@ -1,0 +1,297 @@
+﻿<UserControl x:Class="SyncLoopLibrary.ChannelReport"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SyncLoopLibrary"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock x:Name="NameBlock"
+                   Text="{Binding Path=EpisodeChannel.Name}"
+                   FontSize="18"
+                   FontWeight="Bold"
+                   Foreground="{StaticResource HighlightText}"/>
+        
+        <DataGrid x:Name="ReportGrid"
+                  x:FieldModifier="public"
+                  Grid.ColumnSpan="2"
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  CanUserReorderColumns="True" 
+                  CanUserResizeColumns="True"
+                  CanUserResizeRows="False" 
+                  CanUserSortColumns="True"
+                  CanUserAddRows="False"
+                  SelectionMode="Extended"
+                  FontSize="14"
+                  VerticalGridLinesBrush="{StaticResource HighlightBrush}"
+                  HorizontalGridLinesBrush="{StaticResource HighlightBrush}"
+                  AlternatingRowBackground="{StaticResource HighlightBrush}">
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Foreground" Value="{StaticResource HighlightText}"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.Columns>
+
+                <!-- ID -->
+                <DataGridTextColumn x:Name="IDColumn" 
+                                    Header="ID" 
+                                    Width="80"
+                                    IsReadOnly="True"
+                                    Binding="{Binding Path=ID}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Center"/>
+                            <Setter Property="Margin" Value="5,0"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <!-- PERIOD -->
+                <DataGridTextColumn x:Name="PeriodColumn" 
+                                    Header="Period" 
+                                    Width="60" 
+                                    Binding="{Binding Path=PeriodID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Center"/>
+                            <Setter Property="Margin" Value="5,0"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <!-- CHANNEL -->
+                <DataGridComboBoxColumn x:Name="ChannelsColumn" 
+                                        Header="Channel" 
+                                        DisplayMemberPath="Name" 
+                                        SelectedValuePath="ID" 
+                                        Width="180" 
+                                        SelectedItemBinding="{Binding Path=EpisodeChannel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridComboBoxColumn.ElementStyle>
+                        <Style TargetType="ComboBox">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="Margin" Value="10,0"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridComboBoxColumn.ElementStyle>
+                </DataGridComboBoxColumn>
+
+                <!-- SERIES -->
+                <DataGridComboBoxColumn x:Name="SeriesColumn" 
+                                        Header="Series" 
+                                        Width="250" 
+                                        DisplayMemberPath="NameEnglish" 
+                                        SelectedValuePath="ID" 
+                                        SelectedItemBinding="{Binding Path=EpisodeSeries, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridComboBoxColumn.ElementStyle>
+                        <Style TargetType="ComboBox">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="Margin" Value="10,0"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridComboBoxColumn.ElementStyle>
+                </DataGridComboBoxColumn>
+
+                <!-- CODE -->
+                <DataGridTextColumn x:Name="CodeColumn" 
+                                    Header="Code" 
+                                    Width="100" 
+                                    Binding="{Binding Path=EpisodeCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Center"/>
+                            <Setter Property="Margin" Value="5,0"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <!-- NAME -->
+                <DataGridTextColumn x:Name="NameColumn" 
+                                    Header="Name" 
+                                    Width="250" 
+                                    Binding="{Binding Path=EpisodeNameEnglish, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Center"/>
+                            <Setter Property="Margin" Value="5,0"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <!-- NUMBER -->
+                <DataGridTextColumn x:Name="NumberColumn" 
+                                    Header="Number" Width="70" 
+                                    Binding="{Binding Path=EpisodeNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Center"/>
+                            <Setter Property="Margin" Value="5,0"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <!-- DURATION -->
+                <DataGridTextColumn x:Name="DurationColumn" 
+                                    Header="Duration" 
+                                    Width="70" 
+                                    Binding="{Binding Path=Duration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Center"/>
+                            <Setter Property="Margin" Value="5,0"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <!-- DUE -->
+                <DataGridTemplateColumn x:Name="DueColumn" Header="Due" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker x:Name="DuePicker" SelectedDate="{Binding Path=DateDue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,0"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- DELIVERED -->
+                <DataGridTemplateColumn x:Name="DeliveredColumn" Header="Delivered" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker x:Name="DeliveredPicker" SelectedDate="{Binding Path=DateDelivered, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,0"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- RATE -->
+                <DataGridTextColumn x:Name="RateColumn" 
+                                    Header="Rate" 
+                                    Width="80" 
+                                    Binding="{Binding Path=Rate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Center"/>
+                            <Setter Property="Margin" Value="5,0"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <!-- RATE AMOUNT -->
+                <DataGridTextColumn x:Name="RateAmountColumn"
+                                    IsReadOnly="True"
+                                    Header="Rate Amount" 
+                                    Width="Auto" 
+                                    Binding="{Binding Path=RateAmount, StringFormat={}{0:N}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Right"/>
+                            <Setter Property="Margin" Value="5,0"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <!-- AMOUNT -->
+                <DataGridTextColumn x:Name="AmountColumn" 
+                                    Header="Amount" 
+                                    IsReadOnly="True"
+                                    Width="Auto" 
+                                    Binding="{Binding Path=Amount, StringFormat={}{0:N}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="TextAlignment" Value="Right"/>
+                            <Setter Property="Margin" Value="10,0"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <!-- SUBTOTAL -->
+        <TextBlock x:Name="SubtotalLabelBlock"
+                   Grid.Row="2"
+                   Text="Subtotal:"
+                   FontWeight="Bold"
+                   FontSize="16"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   Foreground="{StaticResource HighlightText}"/>
+        
+        <TextBlock x:Name="SubtotalBlock"
+                   Grid.Row="2"
+                   Grid.Column="1"
+                   Text="{Binding StringFormat={}{0:N}}"
+                   FontSize="16"
+                   FontWeight="Bold"
+                   Margin="5,0,12,0"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"/>
+        
+        <!-- IVA -->
+        <TextBlock x:Name="IvaLabelBlock"
+                   Grid.Row="3"
+                   Text="I.V.A.:"
+                   FontWeight="Bold"
+                   FontSize="16"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   Foreground="{StaticResource HighlightText}"/>
+        
+        <TextBlock x:Name="IvaBlock"
+                   Grid.Row="3"
+                   Grid.Column="1"
+                   Text="{Binding StringFormat={}{0:N}}"
+                   FontSize="16"
+                   FontWeight="Bold"
+                   Margin="5,0,12,0"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"/>
+        
+        <!-- TOTAL -->
+        <TextBlock x:Name="TotalLabelBlock"
+                   Grid.Row="4"
+                   Text="Total:"
+                   FontWeight="Bold"
+                   FontSize="16"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   Foreground="{StaticResource HighlightText}"/>
+        
+        <TextBlock x:Name="TotalBlock"
+                   Grid.Row="4"
+                   Grid.Column="1"
+                   Text="{Binding StringFormat={}{0:N}}"
+                   FontWeight="Bold"
+                   FontSize="16"
+                   Margin="5,0,12,0"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"/>
+
+    </Grid>
+</UserControl>

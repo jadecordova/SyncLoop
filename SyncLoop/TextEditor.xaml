@@ -1,0 +1,215 @@
+﻿<Window x:Class="SyncLoop.TextEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:cm="clr-namespace:SyncLoopLibrary.Commands;assembly=SyncLoopLibrary"
+        xmlns:converter="clr-namespace:SyncLoopLibrary.Converters;assembly=SyncLoopLibrary"
+        mc:Ignorable="d"     
+        UseLayoutRounding="True"
+        Loaded="TextEditorLoaded"
+        Title="SyncLoop" Height="450" Width="800" Icon="program.ico">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Open" CanExecute="Open_CanExecute" Executed="Open_Executed" />
+        <CommandBinding Command="ApplicationCommands.Save" CanExecute="Save_CanExecute" Executed="Save_Executed" />
+        <CommandBinding Command="ApplicationCommands.SaveAs" CanExecute="SaveAs_CanExecute" Executed="SaveAs_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.EditCharacter" CanExecute="EditCharacter_CanExecute" Executed="EditCharacter_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.ApplicationSeetings" CanExecute="ApplicationSeetings_CanExecute" Executed="ApplicationSeetings_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.ShowProgramInfo" CanExecute="ShowProgramInfo_CanExecute" Executed="ShowProgramInfo_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.ScrollToLine" CanExecute="ScrollToLine_CanExecute" Executed="ScrollToLine_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.GenerateProofReadFile" CanExecute="GenerateProofReadFile_CanExecute" Executed="GenerateProofReadFile_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.GenerateRTFDocument" CanExecute="GenerateRTFDocument_CanExecute" Executed="GenerateRTFDocument_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.GenerateExcelDocument" CanExecute="GenerateExcelDocument_CanExecute" Executed="GenerateExcelDocument_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.GenerateSubtitlesDocuments" CanExecute="GenerateSubtitlesDocuments_CanExecute" Executed="GenerateSubtitlesDocuments_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.ConvertUnits" CanExecute="ConvertUnits_CanExecute" Executed="ConvertUnits_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.LoadCharacters" CanExecute="LoadCharacters_CanExecute" Executed="LoadCharacters_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.ReadCharacters" CanExecute="ReadCharacters_CanExecute" Executed="ReadCharacters_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.FindAndReplace" CanExecute="FindAndReplace_CanExecute" Executed="FindAndReplace_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.OffsetLoops" CanExecute="OffsetLoops_CanExecute" Executed="OffsetLoops_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.WriteCharacterTitle" CanExecute="WriteCharacterTitle_CanExecute" Executed="WriteCharacterTitle_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.EditShortcuts" CanExecute="EditShortcuts_CanExecute" Executed="EditShortcuts_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.Shortcut1" CanExecute="Shortcut1_CanExecute" Executed="Shortcut1_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.Shortcut2" CanExecute="Shortcut2_CanExecute" Executed="Shortcut2_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.Shortcut3" CanExecute="Shortcut3_CanExecute" Executed="Shortcut3_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.Shortcut4" CanExecute="Shortcut4_CanExecute" Executed="Shortcut4_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.Shortcut5" CanExecute="Shortcut5_CanExecute" Executed="Shortcut5_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.Shortcut6" CanExecute="Shortcut6_CanExecute" Executed="Shortcut6_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.Shortcut7" CanExecute="Shortcut7_CanExecute" Executed="Shortcut7_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.Shortcut8" CanExecute="Shortcut8_CanExecute" Executed="Shortcut8_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.OpenReportEditor" CanExecute="OpenReportEditor_CanExecute" Executed="OpenReportEditor_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.UpperCase" CanExecute="UpperCase_CanExecute" Executed="UpperCase_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.LowerCase" CanExecute="LowerCase_CanExecute" Executed="LowerCase_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.PlaySubtitles" CanExecute="PlaySubtitles_CanExecute" Executed="PlaySubtitles_Executed" />
+        <CommandBinding Command="cm:SyncLoopCommands.CheckLength" CanExecute="CheckLength_CanExecute" Executed="CheckLength_Executed" />
+    </Window.CommandBindings>
+
+    <Window.Resources>
+        <converter:EnumToStringConverter x:Key="EnumStringConverter"/>
+        <converter:DocumentModeToColorConverter x:Key="DocumentModeToColorConverter"/>
+    </Window.Resources>
+
+    <Grid>
+        <!-- ROW DEFINITIONS -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <!-- MENU -->
+        <Menu Grid.Row="0" x:Name="TextEditorMenu"
+              Background="{StaticResource HighlightBrush}"
+              VerticalAlignment="Center">
+            <MenuItem Header="_File">
+                <MenuItem Command="ApplicationCommands.Open" />
+                <MenuItem Command="ApplicationCommands.Save"/>
+                <MenuItem Command="ApplicationCommands.SaveAs"/>
+                <Separator/>
+                <MenuItem Command="cm:SyncLoopCommands.GenerateProofReadFile" />
+                <MenuItem Command="cm:SyncLoopCommands.GenerateRTFDocument" />
+                <MenuItem Command="cm:SyncLoopCommands.GenerateExcelDocument" />
+                <MenuItem Command="cm:SyncLoopCommands.GenerateSubtitlesDocuments" />
+            </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Command="ApplicationCommands.Copy"/>
+                <MenuItem Command="ApplicationCommands.Cut"/>
+                <MenuItem Command="ApplicationCommands.Paste"/>
+                <Separator/>
+                <MenuItem Command="cm:SyncLoopCommands.ConvertUnits"/>
+                <MenuItem Command="cm:SyncLoopCommands.FindAndReplace"/>
+                <MenuItem Command="cm:SyncLoopCommands.OffsetLoops"/>
+                <Separator/>
+                <MenuItem Command="cm:SyncLoopCommands.UpperCase"/>
+                <MenuItem Command="cm:SyncLoopCommands.LowerCase"/>
+                <MenuItem Command="cm:SyncLoopCommands.CheckLength"/>
+                <Separator/>
+                <MenuItem Command="cm:SyncLoopCommands.LoadCharacters"/>
+                <MenuItem Command="cm:SyncLoopCommands.ReadCharacters"/>
+                <MenuItem Command="cm:SyncLoopCommands.EditCharacter"/>
+                <MenuItem Command="cm:SyncLoopCommands.WriteCharacterTitle"/>
+                <Separator/>
+                <MenuItem Command="cm:SyncLoopCommands.ShowProgramInfo" />
+                <MenuItem Command="cm:SyncLoopCommands.ApplicationSeetings" />
+                <Separator/>
+                <MenuItem Command="cm:SyncLoopCommands.PlaySubtitles" />
+            </MenuItem>
+            <MenuItem Header="_View">
+                <MenuItem Command="cm:SyncLoopCommands.ScrollToLine"/>
+            </MenuItem>
+            <MenuItem Header="_Shortcuts">
+                <MenuItem Command="cm:SyncLoopCommands.EditShortcuts" />
+                <MenuItem x:Name="Short1" Command="cm:SyncLoopCommands.Shortcut1" />
+                <MenuItem x:Name="Short2" Command="cm:SyncLoopCommands.Shortcut2" />
+                <MenuItem x:Name="Short3" Command="cm:SyncLoopCommands.Shortcut3" />
+                <MenuItem x:Name="Short4" Command="cm:SyncLoopCommands.Shortcut4" />
+                <MenuItem x:Name="Short5" Command="cm:SyncLoopCommands.Shortcut5" />
+                <MenuItem x:Name="Short6" Command="cm:SyncLoopCommands.Shortcut6" />
+                <MenuItem x:Name="Short7" Command="cm:SyncLoopCommands.Shortcut7" />
+                <MenuItem x:Name="Short8" Command="cm:SyncLoopCommands.Shortcut8" />
+            </MenuItem>
+            <MenuItem Header="_Reports">
+                <MenuItem Command="cm:SyncLoopCommands.OpenReportEditor"/>
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <!-- PUT CONVERSION TABLE HELP -->
+            </MenuItem>
+            <Button x:Name="OpenVideoWindowButton"
+                    Content="Open video window"
+                    Click="OpenVideoWindowButton_Click"
+                    Visibility="Hidden"/>
+        </Menu>
+
+        <!-- RICH TEXT BOX -->
+        <RichTextBox Grid.Row="1" x:Name="Editor" 
+                     FontFamily="Courier New"
+                     FontSize="{Binding Path=EditorFontSize}"
+                     VerticalScrollBarVisibility="Visible"
+                     Background="White"
+                     Foreground="Black"
+                     UndoLimit="20"
+                     SpellCheck.IsEnabled="{Binding Path=SpellCheckerEnabled}"
+                     xml:lang="es-ES">
+            <RichTextBox.Resources>
+                <Style TargetType="{x:Type Paragraph}">
+                    <Setter Property="Margin" Value="0,0,0,0"/>
+                </Style>
+            </RichTextBox.Resources>
+        </RichTextBox>
+
+        <!-- TASK BAR -->
+        <Border Grid.Row="2"
+                Background="{StaticResource HighlightBrush}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="52"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+                
+                <!-- CHARACTERS LABEL -->
+                <TextBlock
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Foreground="{StaticResource TextBrush}"
+                    FontWeight="Bold"
+                    Margin="5"
+                    Text="Completed: "/>
+                <TextBlock
+                    Grid.Column="1"
+                    x:Name="Percentage"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Foreground="{StaticResource HighlightText}"
+                    FontWeight="Bold"
+                    FontSize="16"
+                    Margin="5"
+                    Text="100%"/>
+                <TextBlock
+                    Grid.Column="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontWeight="Bold"
+                    Foreground="{StaticResource TextBrush}"
+                    Margin="5"
+                    Text="Font Size:"/>
+                <TextBox
+                    Grid.Column="3"
+                    x:Name="FontSize"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    Width="40"
+                    FontWeight="Bold"
+                    Margin="5"
+                    Text="{Binding Path=EditorFontSize, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <ProgressBar x:Name="GeneralProgressBar"
+                             Grid.Column="4"
+                             Height="20"
+                             Margin="10,0"
+                             Minimum="0"
+                             Maximum="100"
+                             Visibility="Hidden"
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Center"/>
+
+                <Border Grid.Column="5"
+                        x:Name="ModeBorder"
+                        Background="{Binding Path=DocumentType, Converter={StaticResource DocumentModeToColorConverter}}">
+                    <TextBlock Text="{Binding Path=DocumentType, Converter={StaticResource EnumStringConverter}}"
+                               x:Name="ModeBlock"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="14"
+                               FontWeight="Bold"
+                               Foreground="White"
+                               Margin="20,0,20,0"/>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+</Window>

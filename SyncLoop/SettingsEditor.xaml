@@ -1,0 +1,425 @@
+﻿<Window x:Class="SyncLoop.SettingsEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        UseLayoutRounding="True"
+        Title="SyncLop" Height="995" Width="390" WindowStartupLocation="CenterScreen"
+        >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- TITLE -->
+        <Border Background="{StaticResource AccentColorBrush}">
+            <Label Style="{StaticResource Titles}"
+                   Content="Settings"/>
+        </Border>
+
+        <!-- LIST -->
+        <ScrollViewer x:Name="SettingsList"
+                      Grid.Row="1"
+                      VerticalAlignment="Top"
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto">
+            <Grid Margin="0,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- EDITOR FONT-->
+                <TextBlock Style="{StaticResource SettingsText}" Text="Editor font:"/>
+                <ComboBox x:Name="EditorFontList"
+                                      ItemsSource="{Binding}"
+                                      Grid.Column="1"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      DisplayMemberPath="Source"
+                                      Width="150"/>
+
+                <!-- EDITOR FONT SIZE-->
+                <TextBlock Style="{StaticResource SettingsText}" Text="Editor font size:" Grid.Row="1"/>
+                <TextBox x:Name="FontSize"
+                         Grid.Row="1"
+                         Grid.Column="1"
+                         Width="40"
+                         Margin="0,0,5,0"
+                         Text="{Binding Path=EditorFontSize, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"/>
+
+                <!-- DECIMAL PLACES -->
+                <TextBlock Style="{StaticResource SettingsText}" Text="Converter decimal places:" Grid.Row="3"/>
+                <TextBox x:Name="ConverterBox"
+                         Grid.Column="1"
+                         Grid.Row="3"
+                         Width="40"
+                         Margin="0,0,5,0"
+                         Text="{Binding Path=ConverterDecimalPlaces}"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"/>
+
+                <!-- AUTO SAVE -->
+                <TextBlock Style="{StaticResource SettingsText}" Text="Auto-save (Loops):" Grid.Row="4"/>
+                <TextBox x:Name="AutosaveBox"
+                         Grid.Row="4"
+                         Grid.Column="1"
+                         Width="40"
+                         Margin="0,0,5,0"
+                         Text="{Binding Path=Autosave}"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"/>
+
+                <!-- AUTO SAVE -->
+                <TextBlock Style="{StaticResource SettingsText}" Text="Scroll offeset:" Grid.Row="5"/>
+                <TextBox x:Name="ScrollBox"
+                         Grid.Row="5"
+                         Grid.Column="1"
+                         Width="40"
+                         Margin="0,0,5,0"
+                         Text="{Binding Path=SubtitlesScrollOffset}"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"/>
+
+                <!-- SPELLING -->
+                <TextBlock Style="{StaticResource SettingsText}" Text="Spell checker:" Grid.Row="6"/>
+                <CheckBox x:Name="SpellCheckBox"
+                          Grid.Row="6"
+                          Grid.Column="1"
+                          Margin="0,0,5,0"
+                          IsChecked="{Binding Path=SpellCheckerEnabled}"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Left"/>
+
+                <!-- ENGINE -->
+                <TextBlock Style="{StaticResource SettingsText}" Text="Video engine:" Grid.Row="7"/>
+                <ComboBox x:Name="VideoEnginesList"
+                          Grid.Row="7"
+                          Grid.Column="1"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Center"
+                          Width="150"/>
+
+                <!-- SUBTITLES -->
+                <TextBlock Style="{StaticResource SettingsText}" Text="Subtitles mode:" Grid.Row="8"/>
+                <ComboBox x:Name="SubtitlesModeList"
+                          Grid.Row="8"
+                          Grid.Column="1"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Center"
+                          Width="150"/>
+
+                <!-- FRAME COMPENSATION -->
+                <TextBlock Style="{StaticResource SettingsText}" Text="Frame compensation:" Grid.Row="9"/>
+                <TextBox x:Name="FrameCompensationBox"
+                         Grid.Row="9"
+                         Grid.Column="1"
+                         Width="40"
+                         Margin="0,0,5,0"
+                         Text="{Binding Path=FrameCompensation}"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"/>
+
+                <!-- REWIND -->
+                <TextBlock Style="{StaticResource SettingsText}" Text="Rewind after loop:" Grid.Row="10"/>
+                <TextBox x:Name="RewindBox"
+                          Grid.Row="10"
+                         Grid.Column="1"
+                         Width="40"
+                         Margin="0,0,5,0"
+                         Text="{Binding Path=SecondsToRewindVideoAfterLoop}"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"/>
+
+                <!-- TRANSLATOR -->
+                <TextBlock Style="{StaticResource SettingsText}" Text="Translator name:" Grid.Row="11"/>
+                <TextBox x:Name="TranslatorNameBox"
+                         Grid.Row="11"
+                         Grid.Column="1"
+                         Text="{Binding Path=TranslatorName}"
+                         Width="150"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"/>
+
+
+                <!-- DOCUMENT TYPE -->
+                <TextBlock Style="{StaticResource SettingsText}" Text="Document type:" Grid.Row="12"/>
+                <ComboBox x:Name="DocumentType"
+                          Grid.Row="12"
+                          Grid.Column="1"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Center"
+                          Width="150"
+                          Margin="0,0,5,0">
+                    <ComboBoxItem>Excel</ComboBoxItem>
+                    <ComboBoxItem>RTF</ComboBoxItem>
+                    <ComboBoxItem>Subtitles</ComboBoxItem>
+                </ComboBox>
+
+                <!-- CHARACTERS PER LOOP -->
+                <TextBlock Style="{StaticResource SettingsText}" Text="Characters per loop:" Grid.Row="13"/>
+                <TextBox x:Name="MaximumCharactersPerLoop"
+                         Grid.Row="13"
+                         Grid.Column="1"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                         Margin="0,0,5,0"
+                         Text="{Binding Path=LoopLength}"
+                         Width="40"/>
+
+                <!-- CHARACTERS PER LINE -->
+                <TextBlock Style="{StaticResource SettingsText}" Text="Characters per line:" Grid.Row="14"/>
+                <TextBox x:Name="CharactersPerLine"
+                         Grid.Row="14"
+                         Grid.Column="1"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                         Margin="0"
+                         Text="{Binding Path=CharactersPerLine}"
+                         Width="40"/>
+
+                <!-- GESTURES CHARACTER -->
+                <TextBlock Style="{StaticResource SettingsText}" Text="Gestures character:" Grid.Row="15"/>
+                <TextBox x:Name="GesturesCharacterBox"
+                         Grid.Row="15"
+                         Grid.Column="1"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                         Margin="0"
+                         Text="{Binding Path=GesturesCharacter}"
+                         Width="40"/>
+
+                <!-- TITLE STRING -->
+                <TextBlock Style="{StaticResource SettingsText}" Text="Title string:" Grid.Row="16"/>
+                <TextBox x:Name="TitleString"
+                         Grid.Row="16"
+                         Grid.Column="1"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                         Margin="0"
+                         Text="{Binding Path=TitleString}"
+                         Width="150"/>
+
+                <!-- SMPTE FORMAT -->
+                <TextBlock Style="{StaticResource SettingsText}" Text="SMPTE format:" Grid.Row="17"/>
+                <TextBox x:Name="SmpteFormatBox"
+                         Grid.Row="17"
+                         Grid.Column="1"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                         Margin="0"
+                         Text="{Binding Path=SmpteFormat}"
+                         Width="150"/>
+
+                <!-- SUBTITLE LENGTH -->
+                <TextBlock Style="{StaticResource SettingsText}" Text="Subtitle length:" Grid.Row="18"/>
+                <TextBox x:Name="SubtitleLength"
+                         Grid.Row="18"
+                         Grid.Column="1"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                         Margin="0"
+                         Text="{Binding Path=SubtitleLength}"
+                         Width="40"/>
+
+                <!-- SUBTITLE SEPARATION -->
+                <TextBlock Style="{StaticResource SettingsText}" Text="Subtitle separation:" Grid.Row="19"/>
+                <TextBox x:Name="FramesBetweeSubtitles"
+                         Grid.Row="19"
+                         Grid.Column="1"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                         Margin="0"
+                         Text="{Binding Path=FramesBetweenSubtitles}"
+                         Width="40"/>
+
+                <!-- CONTENT FONT -->
+                <TextBlock Style="{StaticResource SettingsText}" Text="Content font:" Grid.Row="20"/>
+                <ComboBox x:Name="ContentFontList"
+                          Grid.Row="20"
+                          ItemsSource="{Binding}"
+                          Grid.Column="1"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Center"
+                          DisplayMemberPath="Source"
+                          Width="150"/>
+
+                <!-- CONTENT FONT SIZE -->
+                <TextBlock Style="{StaticResource SettingsText}" Text="Content font size:" Grid.Row="21"/>
+                <TextBox x:Name="ContentFontSize"
+                         Grid.Row="21"
+                         Grid.Column="1"
+                         Width="40"
+                         Margin="0"
+                         Text="{Binding Path=ContentFontSize}"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"/>
+
+                <!-- ADDITIONAL FONT -->
+                <TextBlock Style="{StaticResource SettingsText}" Text="Additional font:" Grid.Row="22"/>
+                <ComboBox x:Name="AdditionalFontList"
+                          Grid.Row="22"
+                          ItemsSource="{Binding}"
+                          Grid.Column="1"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Center"
+                          DisplayMemberPath="Source"
+                          Width="150"/>
+
+                <!-- ADDITIONAL FONT SIZE -->
+                <TextBlock Style="{StaticResource SettingsText}" Text="Additional font size:" Grid.Row="23"/>
+                <TextBox x:Name="AdditionalFontSize"
+                         Grid.Row="23"
+                         Grid.Column="1"
+                         Width="40"
+                         Margin="0"
+                         Text="{Binding Path=AdditionalFontSize}"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"/>
+
+                <!-- HEADERS FONT -->
+                <TextBlock Style="{StaticResource SettingsText}" Text="Headers and footers font:" Grid.Row="24"/>
+                <ComboBox x:Name="HeadersAndFootersFontList"
+                          Grid.Row="24"
+                          ItemsSource="{Binding}"
+                          Grid.Column="1"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Center"
+                          DisplayMemberPath="Source"
+                          Width="150" Margin="0,3,0,4"/>
+
+                <!-- HEADERS FONT SIZE -->
+                <TextBlock Style="{StaticResource SettingsText}" Text="Headers font size:" Grid.Row="25"/>
+                <TextBox x:Name="HeadersAndFootersFontSize"
+                         Grid.Row="25"
+                         Grid.Column="1"
+                         Width="40"
+                         Margin="0"
+                         Text="{Binding Path=HeadersAndFootersFontSize}"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"/>
+
+                <!-- CHANNELS -->
+                <GroupBox Header="Channels" 
+                          Grid.Row="26"
+                          Grid.ColumnSpan="2"
+                          Margin="0,5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="180"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- CHANNEL NAME -->
+                        <TextBlock Style="{StaticResource SettingsText}" Text="Channel name:" Grid.Row="0"/>
+                        <ComboBox x:Name="ChannelsBox"
+                                  Grid.Column="1"
+                                  Width="150"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Left"
+                                  IsEditable="True"
+                                  ItemsSource="{Binding}"
+                                  DisplayMemberPath="Name"
+                                  SelectedValuePath="Code"
+                                  Margin="0"/>
+
+                        <!-- CHANNEL CODE -->
+                        <TextBlock Style="{StaticResource SettingsText}" Text="Channel code:" Grid.Row="1"/>
+                        <TextBox x:Name="ChannelCodeBox"
+                                 Grid.Row="1"
+                                 Grid.Column="1"
+                                 Width="150"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Left"/>
+
+                        <!-- BUTTONS -->
+                        <StackPanel Grid.Row="2"
+                                    Grid.ColumnSpan="2"
+                                    Orientation="Horizontal"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+
+                            <Button x:Name="AddButton"
+                                    Width="80"
+                                    Height="25"
+                                    Margin="10,5,5,5"
+                                    Content="_Add" Click="AddChannelButtonClick"/>
+
+                            <Button x:Name="RemoveButton"
+                                    Width="80"
+                                    Height="25"
+                                    Margin="5"
+                                    Content="_Remove" Click="RemoveChannelButtonClick"/>
+
+                            <Button x:Name="EditButton"
+                                    Width="80"
+                                    Height="25"
+                                    Margin="5,5,0,5"
+                                    Content="_Edit" Click="EditChannelButtonClick"/>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </ScrollViewer>
+
+        <!-- BUTTONS -->
+        <Border Background="{StaticResource HighlightBrush}"
+                Grid.Row="2">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0">
+                <Button Content="_OK"
+                        IsDefault="True"
+                        Margin="5,10"
+                        Width="{StaticResource ButtonWidth}"
+                        Height="{StaticResource ButtonHeight}"
+                        Click="OKButtonClick"/>
+                <Button Content="_Cancel"
+                        IsCancel="True"
+                        Margin="5,10"
+                        Width="{StaticResource ButtonWidth}"
+                        Height="{StaticResource ButtonHeight}"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,117 @@
+﻿<Window x:Class="SyncLoop.CharacterSelector"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SyncLoop"
+        mc:Ignorable="d"
+        UseLayoutRounding="True"
+        ContentRendered="CharacterSelectorContentRendered"
+        Title="SyncLoop" MinHeight="300" MaxHeight="900" MinWidth="280" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Style  TargetType="{x:Type ListBoxItem}">
+            <Style.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                    <Setter Property="Background" Value="#ffffffff"></Setter>
+                </Trigger>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="{StaticResource HighlightBrush}"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <!-- ROW DEFINITIONS -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- TITLE -->
+        <Border Background="{StaticResource AccentColorBrush}">
+            <Label Style="{StaticResource Titles}"
+                   Content="Select character"/>
+        </Border>
+
+        <!-- CHARACTER LIST -->
+        <ListBox x:Name="CharactersList" 
+                 Grid.Row="1"
+                 AlternationCount="2"
+                 HorizontalContentAlignment="Stretch" 
+                 ItemsSource="{Binding}" 
+                 SelectionMode="Single" 
+                 TextSearch.TextPath="Name" 
+                 AutomationProperties.Name="CharactersList" 
+                 x:FieldModifier="public"
+                 Height="Auto">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="0" 
+                            BorderThickness="0" 
+                            Padding="0" 
+                            x:Name="ItemBorder">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Name}" FontSize="14" FontWeight="Bold" Grid.Column="0" Name="CharacterName" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Title}" FontStyle="Italic" FontSize="14" Grid.Column="1" Margin="10,0" VerticalAlignment="Center" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <!-- BUTTONS -->
+        <Border Background="{StaticResource HighlightBrush}"
+                Grid.Row="2">
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Right" Margin="10,5">
+                    <Button x:Name="Add" 
+                            Content="_Add" 
+                            Width="{StaticResource ButtonWidth}"
+                            Height="{StaticResource ButtonHeight}"
+                            Margin="5,0"
+                            Click="AddCharacter"/>
+                    <Button x:Name="Edit" 
+                            Content="_Edit" 
+                            Width="{StaticResource ButtonWidth}"
+                            Height="{StaticResource ButtonHeight}"
+                            Margin="5,0" 
+                            Click="EditCharacter"/>
+                    <Button x:Name="Delete"
+                            Content="_Delete" 
+                            Width="{StaticResource ButtonWidth}"
+                            Height="{StaticResource ButtonHeight}"
+                            Margin="5,0" 
+                            Click="DeleteCharacter"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Right" Margin="10,5">
+                    <Button x:Name="OK" 
+                            Content="_OK" 
+                            Width="{StaticResource ButtonWidth}"
+                            Height="{StaticResource ButtonHeight}"
+                            Margin="5,0"
+                            IsDefault="True" 
+                            Click="OkButtonClick"/>
+                    <Button x:Name="Cancel" 
+                            Content="_Cancel" 
+                            Width="{StaticResource ButtonWidth}"
+                            Height="{StaticResource ButtonHeight}"
+                            Margin="5,0"
+                            IsCancel="True" 
+                            Click="CancelButtonClick"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</Window>

@@ -1,0 +1,156 @@
+﻿<Window x:Class="SyncLoop.ShorcutsEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SyncLoop"
+        mc:Ignorable="d"
+        UseLayoutRounding="True"
+        Title="SyncLoop" Width="500" SizeToContent="Height" Icon="program.ico" Height="529">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="55"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- TITLE -->
+        <Border Background="{StaticResource AccentColorBrush}" Grid.ColumnSpan="2">
+            <Label Style="{StaticResource Titles}"
+                   Content="Shortcuts"/>
+        </Border>
+
+        <!-- CONTENTS -->
+        <TextBlock Grid.Row="1" 
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Text="Pressing the keys will enter the corresponding text in the document."
+                   Margin="10"
+                   FontSize="{StaticResource BaseTextSize}"/>
+
+        <TextBlock Text="F5: " Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" />
+        <TextBox x:Name="Shorcut1" 
+                 Grid.Row="2"
+                 Grid.Column="1"
+                 AcceptsReturn="True" 
+                 HorizontalAlignment="Stretch" 
+                 VerticalAlignment="Center" 
+                 Margin="10"
+                 Text="{Binding [0]}"
+                 FontSize="{StaticResource TextBoxTextSize}" />
+
+        <TextBlock Text="F6: " Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" />
+        <TextBox x:Name="Shorcut2" 
+                 Grid.Row="3"
+                 Grid.Column="1"
+                 AcceptsReturn="True" 
+                 HorizontalAlignment="Stretch" 
+                 VerticalAlignment="Center" 
+                 Margin="10"
+                 Text="{Binding [1]}"
+                 FontSize="{StaticResource TextBoxTextSize}" />
+
+        <TextBlock Text="F7: " Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" />
+        <TextBox x:Name="Shorcut3" 
+                 Grid.Row="4"
+                 Grid.Column="1"
+                 AcceptsReturn="True" 
+                 HorizontalAlignment="Stretch" 
+                 VerticalAlignment="Center" 
+                 Margin="10"
+                 Text="{Binding [2]}"
+                 FontSize="{StaticResource TextBoxTextSize}" />
+
+        <TextBlock Text="F8: " Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" />
+        <TextBox x:Name="Shorcut4" 
+                 Grid.Row="5"
+                 Grid.Column="1"
+                 AcceptsReturn="True" 
+                 HorizontalAlignment="Stretch" 
+                 VerticalAlignment="Center" 
+                 Margin="10"
+                 Text="{Binding [3]}"
+                 FontSize="{StaticResource TextBoxTextSize}" />
+
+        <TextBlock Text="F9: " Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" />
+        <TextBox x:Name="Shorcut5" 
+                 Grid.Row="6"
+                 Grid.Column="1"
+                 AcceptsReturn="True" 
+                 HorizontalAlignment="Stretch" 
+                 VerticalAlignment="Center" 
+                 Margin="10"
+                 Text="{Binding [4]}"
+                 FontSize="{StaticResource TextBoxTextSize}" />
+
+        <TextBlock Text="F10: " Grid.Row="7" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" />
+        <TextBox x:Name="Shorcut6" 
+                 Grid.Row="7"
+                 Grid.Column="1"
+                 AcceptsReturn="True" 
+                 HorizontalAlignment="Stretch" 
+                 VerticalAlignment="Center" 
+                 Margin="10"
+                 Text="{Binding [5]}"
+                 FontSize="{StaticResource TextBoxTextSize}" />
+
+        <TextBlock Text="F11: " Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" />
+        <TextBox x:Name="Shorcut7" 
+                 Grid.Row="8"
+                 Grid.Column="1"
+                 AcceptsReturn="True" 
+                 HorizontalAlignment="Stretch" 
+                 VerticalAlignment="Center" 
+                 Margin="10"
+                 Text="{Binding [6]}"
+                 FontSize="{StaticResource TextBoxTextSize}" />
+
+        <TextBlock Text="F12: " Grid.Row="9" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" />
+        <TextBox x:Name="Shorcut8" 
+                 Grid.Row="9"
+                 Grid.Column="1"
+                 AcceptsReturn="True" 
+                 HorizontalAlignment="Stretch" 
+                 VerticalAlignment="Center" 
+                 Margin="10"
+                 Text="{Binding [7]}"
+                 FontSize="{StaticResource TextBoxTextSize}" />
+
+        <!-- BUTTONS -->
+        <Border Background="{StaticResource HighlightBrush}"
+                Grid.Row="10"
+                Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center">
+                <Button x:Name="OK"
+                        Content="_OK"
+                        Width="{StaticResource ButtonWidth}"
+                        Height="{StaticResource ButtonHeight}"
+                        Margin="5,10"
+                        IsDefault="True" 
+                        Click="OK_Click"/>
+                <Button x:Name="Cancel"
+                        Content="_Cancel"
+                        Width="{StaticResource ButtonWidth}"
+                        Height="{StaticResource ButtonHeight}"
+                        Margin="5,10"
+                        IsCancel="True"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
