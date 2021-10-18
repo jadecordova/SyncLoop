@@ -24,8 +24,8 @@
 - Automatically generate invoice files for printing (SVG).
 - Modifiable invoice template (SVG).
 
-![VideoCat](screens/2.jpg "VideoCat")
-![VideoCat](screens/3.jpg "VideoCat")
-![VideoCat](screens/4.jpg "VideoCat")
-![VideoCat](screens/5.jpg "VideoCat")
-![VideoCat](screens/6.jpg "VideoCat")
+![VideoCat](screens/2.JPG "VideoCat")
+![VideoCat](screens/3.JPG "VideoCat")
+![VideoCat](screens/4.JPG "VideoCat")
+![VideoCat](screens/5.JPG "VideoCat")
+![VideoCat](screens/6.JPG "VideoCat")
